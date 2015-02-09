@@ -17,7 +17,7 @@ ssh root@sandbox.hortonworks.com
 - To deploy the NSLCD stack, run below
 ```
 cd /var/lib/ambari-server/resources/stacks/HDP/2.2/services
-git clone https://github.com/abajwa-hw/nslcd_stack.git   
+git clone https://github.com/abajwa-hw/nslcd-stack.git   
 sudo service ambari restart
 ```
 - Then you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
@@ -48,7 +48,7 @@ On bottom left -> Actions -> Add service -> check NSLCD server -> Next -> Next -
     ```
 
 
-#### Browse users
+#### Browse LDAP users from Hadoop cluster
 
 - Your operating system can now recognize your LDAP users (e.g. in OpenLDAP) 
 ```
