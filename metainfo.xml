@@ -12,7 +12,7 @@
                   <name>NSLCD_MASTER</name>
                   <displayName>Nslcd</displayName>
                   <category>MASTER</category>
-                  <cardinality>1</cardinality>
+                  <cardinality>1+</cardinality>
                   <commandScript>
                     <script>scripts/master.py</script>
                     <scriptType>PYTHON</scriptType>
