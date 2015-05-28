@@ -16,7 +16,7 @@ class Master(Script):
 
     Execute('sed -i "s/gid nslcd/gid root/g" /etc/nslcd.conf')
     Execute('sed -i "s/base dc=example,dc=com/base '+params.dist_name+'/g" /etc/nslcd.conf') 
-    Execute('sed -i "s#uri ldap://127.0.0.1/#uri '+params.ldap_url+'#g" /etc/nslcd.conf')
+    Execute('sed -i "s#uri ldap://127.0.0.1/#uri ldap://'+params.ldap_url+'/#g" /etc/nslcd.conf')
 
 
     Execute('sed -i "s/#base.*group.*ou=Groups,dc=example,dc=com/base   group '+params.groups_name+'/g" /etc/nslcd.conf')
