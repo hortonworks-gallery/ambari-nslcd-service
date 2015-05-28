@@ -4,6 +4,12 @@
 <configuration>
 
   <property>
+    <name>ldap.url</name>
+    <value>ldap://node1:389/</value>
+    <description>LDAP url in the form ldap://<LDAP hostname>:389/</description>
+  </property> 
+
+  <property>
     <name>distinguished.name</name>
     <value>dc=hortonworks,dc=com</value>
     <description>Distinguished name e.g. dc=hortonworks,dc=com</description>
