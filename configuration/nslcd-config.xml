@@ -5,7 +5,7 @@
 
   <property>
     <name>ldap.url</name>
-    <value>node1:389</value>
+    <value>sandbox.hortonworks.com:389</value>
     <description>LDAP hostname:port in the form e.g. sandbox.hortonworks.com:389</description>
   </property> 
 
