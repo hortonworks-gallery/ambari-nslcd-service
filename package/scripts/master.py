@@ -9,8 +9,11 @@ class Master(Script):
     self.configure(env)
     import params
 
-    Execute('cd /tmp; wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/okelet/RedHat_RHEL-6/x86_64/nss-pam-ldapd-0.8.12-rhel6.13.1.x86_64.rpm')
-    Execute('cd /tmp; rpm -iv nss-pam-ldapd*.rpm')
+    #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.2/services/nslcd-stack/package
+    service_packagedir = os.path.realpath(__file__).split('/scripts')[0] 
+    
+    #Execute('cd /tmp; wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/okelet/RedHat_RHEL-6/x86_64/nss-pam-ldapd-0.8.12-rhel6.13.1.x86_64.rpm')
+    Execute('rpm -iv '+service_packagedir+'files/nss-pam-ldapd*.rpm')
 
     Execute('sed -i "s/passwd:.*files/passwd: files  ldap/g" /etc/nsswitch.conf')
     Execute('sed -i "s/group:.*files/group: files  ldap/g" /etc/nsswitch.conf')
