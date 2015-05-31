@@ -9,7 +9,8 @@ class Master(Script):
     self.configure(env)
     import params
 
-    Execute('rpm -iv ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/okelet/RedHat_RHEL-6/x86_64/nss-pam-ldapd-0.8.12-rhel6.13.1.x86_64.rpm')
+    Execute('cd /tmp; wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/okelet/RedHat_RHEL-6/x86_64/nss-pam-ldapd-0.8.12-rhel6.13.1.x86_64.rpm')
+    Execute('cd /tmp; rpm -iv nss-pam-ldapd*.rpm')
 
     Execute('sed -i "s/passwd:.*files/passwd: files  ldap/g" /etc/nsswitch.conf')
     Execute('sed -i "s/group:.*files/group: files  ldap/g" /etc/nsswitch.conf')
