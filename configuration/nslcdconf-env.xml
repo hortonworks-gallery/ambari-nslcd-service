@@ -8,7 +8,6 @@
     <description>This is the jinja template for /etc/nslcd.conf file</description>
     <value>
 # This is the configuration file for the LDAP nameservice
-# switch library's nslcd daemon. 
 ignorecase yes
 
 # The user and group nslcd should run as.
