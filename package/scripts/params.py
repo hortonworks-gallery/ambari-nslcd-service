@@ -9,3 +9,5 @@ dist_name = config['configurations']['nslcd-config']['distinguished.name']
 groups_name = config['configurations']['nslcd-config']['groups.name']
 users_name = config['configurations']['nslcd-config']['users.name']
 ldap_url = config['configurations']['nslcd-config']['ldap.url']
+
+nsswitch_template_config = config['configurations']['nsswitch-env']['content']

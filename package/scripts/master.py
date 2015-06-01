@@ -10,9 +10,7 @@ class Master(Script):
     import params
 
     #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.2/services/nslcd-stack/package
-    service_packagedir = os.path.realpath(__file__).split('/scripts')[0] 
-    
-    #Execute('cd /tmp; wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/okelet/RedHat_RHEL-6/x86_64/nss-pam-ldapd-0.8.12-rhel6.13.1.x86_64.rpm')
+    service_packagedir = os.path.realpath(__file__).split('/scripts')[0]     
     Execute('rpm -iv '+service_packagedir+'/files/nss-pam-ldapd*.rpm')
 
     Execute('sed -i "s/passwd:.*files/passwd: files  ldap/g" /etc/nsswitch.conf')
@@ -37,20 +35,34 @@ class Master(Script):
 
   def configure(self, env):
     import params
+    import status_params    
     env.set_params(params)
+    
+    content=InlineTemplate(status_params.nslcd_template_config)
+    File(format("/etc/nslcd.conf"), content=content, owner='root',group='root', mode=0600)
+
+    switchcontent=InlineTemplate(params.nsswitch_template_config)
+    File(format("/etc/nsswitch.conf"), content=switchcontent, owner='root',group='root', mode=0655)
+    
 
   def stop(self, env):
     import params
+    import status_params
+    self.configure(env)
     Execute('service nslcd stop')
       
   def start(self, env):
     import params
+    import status_params
+    self.configure(env)
     Execute('service nslcd start')
 	
 
   def status(self, env):
-    import params
-    Execute('service nslcd status')
+    import status_params
+    env.set_params(status_params)  
+    check_process_status('/var/run/nslcd/nslcd.pid')
+    #Execute('service nslcd status')
 
 if __name__ == "__main__":
   Master().execute()
