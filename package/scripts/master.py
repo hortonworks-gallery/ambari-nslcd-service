@@ -9,6 +9,7 @@ class Master(Script):
 
     import params
 
+    Execute('rpm -e nss-pam-ldapd-0.8.12-rhel6.13.1.x86_64', ignore_failures=True)
     #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.2/services/nslcd-stack/package
     service_packagedir = os.path.realpath(__file__).split('/scripts')[0]     
     Execute('rpm -iv '+service_packagedir+'/files/nss-pam-ldapd*.rpm')
