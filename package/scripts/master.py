@@ -41,11 +41,12 @@ class Master(Script):
     env.set_params(params)
     
     Execute('echo list of config dump: ' + str(', '.join(params.config['configurations'])))        
-    content=InlineTemplate(params.nslcd_template_config)
-    File(format("/etc/nslcd.conf"), content=content, owner='root',group='root', mode=0600)
 
     switchcontent=InlineTemplate(params.nsswitch_template_config)
     File(format("/etc/nsswitch.conf"), content=switchcontent, owner='root',group='root', mode=0655)
+
+    content=InlineTemplate(params.nslcd_template_config)
+    File(format("/etc/nslcd.conf"), content=content, owner='root',group='root', mode=0655)
     
 
   def stop(self, env):
