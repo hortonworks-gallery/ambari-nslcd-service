@@ -6,28 +6,30 @@ class Master(Script):
   def install(self, env):
     # Install packages listed in metainfo.xml
     self.install_packages(env)
-    self.configure(env)
+
     import params
 
     #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.2/services/nslcd-stack/package
     service_packagedir = os.path.realpath(__file__).split('/scripts')[0]     
     Execute('rpm -iv '+service_packagedir+'/files/nss-pam-ldapd*.rpm')
 
-    Execute('sed -i "s/passwd:.*files/passwd: files  ldap/g" /etc/nsswitch.conf')
-    Execute('sed -i "s/group:.*files/group: files  ldap/g" /etc/nsswitch.conf')
+    self.configure(env)
+    
+    #Execute('sed -i "s/passwd:.*files/passwd: files  ldap/g" /etc/nsswitch.conf')
+    #Execute('sed -i "s/group:.*files/group: files  ldap/g" /etc/nsswitch.conf')
 
-    Execute('sed -i "s/gid nslcd/gid root/g" /etc/nslcd.conf')
-    Execute('sed -i "s/base dc=example,dc=com/base '+params.dist_name+'/g" /etc/nslcd.conf') 
-    Execute('sed -i "s#uri ldap://127.0.0.1/#uri ldap://'+params.ldap_url+'/#g" /etc/nslcd.conf')
+    #Execute('sed -i "s/gid nslcd/gid root/g" /etc/nslcd.conf')
+    #Execute('sed -i "s/base dc=example,dc=com/base '+params.dist_name+'/g" /etc/nslcd.conf') 
+    #Execute('sed -i "s#uri ldap://127.0.0.1/#uri ldap://'+params.ldap_url+'/#g" /etc/nslcd.conf')
 
 
-    Execute('sed -i "s/#base.*group.*ou=Groups,dc=example,dc=com/base   group '+params.groups_name+'/g" /etc/nslcd.conf')
-    Execute('sed -i "s/#base   passwd ou=People,dc=example,dc=com/base   passwd '+params.users_name+'/g" /etc/nslcd.conf')
-    Execute('sed -i "s/#filter passwd (objectClass=aixAccount)/filter passwd (objectClass=posixaccount)/g" /etc/nslcd.conf')
+    #Execute('sed -i "s/#base.*group.*ou=Groups,dc=example,dc=com/base   group '+params.groups_name+'/g" /etc/nslcd.conf')
+    #Execute('sed -i "s/#base   passwd ou=People,dc=example,dc=com/base   passwd '+params.users_name+'/g" /etc/nslcd.conf')
+    #Execute('sed -i "s/#filter passwd (objectClass=aixAccount)/filter passwd (objectClass=posixaccount)/g" /etc/nslcd.conf')
 
-    Execute('sed -i "s/#map.*passwd uidNumber.*uid/map    passwd uidNumber         uidNumber/g" /etc/nslcd.conf')
-    Execute('sed -i "s/#map.*passwd gidNumber.*gid/map    passwd gidNumber         gidNumber/g" /etc/nslcd.conf')
-    Execute('sed -i "s/#filter group  (objectClass=aixAccessGroup)/filter group  (objectClass=posixgroup)/g" /etc/nslcd.conf')
+    #Execute('sed -i "s/#map.*passwd uidNumber.*uid/map    passwd uidNumber         uidNumber/g" /etc/nslcd.conf')
+    #Execute('sed -i "s/#map.*passwd gidNumber.*gid/map    passwd gidNumber         gidNumber/g" /etc/nslcd.conf')
+    #Execute('sed -i "s/#filter group  (objectClass=aixAccessGroup)/filter group  (objectClass=posixgroup)/g" /etc/nslcd.conf')
 
     Execute('service nslcd start')
     Execute('chkconfig nslcd on')
