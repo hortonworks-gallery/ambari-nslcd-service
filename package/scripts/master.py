@@ -37,16 +37,16 @@ class Master(Script):
 
   def configure(self, env):
     import params
-    #import status_params    
+    import status_params    
     env.set_params(params)
     
     Execute('echo list of config dump: ' + str(', '.join(params.config['configurations'])))        
 
     switchcontent=InlineTemplate(params.nsswitch_template_config)
-    File(format("/etc/nsswitch.conf"), content=switchcontent, owner='root',group='root', mode=0655)
+    File(format("/etc/nsswitch.conf"), content=switchcontent, owner='root',group='root', mode=0644)
 
-    content=InlineTemplate(params.nslcd_template_config)
-    File(format("/etc/nslcd.conf"), content=content, owner='root',group='root', mode=0655)
+    content=InlineTemplate(status_params.nslcd_template_config)
+    File(format("/etc/nslcd.conf"), content=content, owner='root',group='root', mode=0644)
     
 
   def stop(self, env):
