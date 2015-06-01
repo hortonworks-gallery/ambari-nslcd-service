@@ -12,3 +12,4 @@ ldap_url = config['configurations']['nslcd-config']['ldap.url']
 
 
 nsswitch_template_config = config['configurations']['nsswitch-env']['content']
+nslcd_template_config = config['configurations']['nslcdconf-env']['content']
