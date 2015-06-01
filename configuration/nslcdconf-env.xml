@@ -8,10 +8,7 @@
     <description>This is the jinja template for /etc/nslcd.conf file</description>
     <value>
 # This is the configuration file for the LDAP nameservice
-# switch library's nslcd daemon. It configures the mapping
-# between NSS names (see /etc/nsswitch.conf) and LDAP
-# information in the directory.
-# See the manual page nslcd.conf(5) for more information.
+# switch library's nslcd daemon. 
 ignorecase yes
 
 # The user and group nslcd should run as.
@@ -19,9 +16,6 @@ uid nslcd
 gid root
 
 # The uri pointing to the LDAP server to use for name lookups.
-# Multiple entries may be specified. The address that is used
-# here should be resolvable without using LDAP (obviously).
-# Note: %2f encodes the '/' used as directory separator
 uri ldap://{{ldap_url}}/
 
 # The LDAP version to use (defaults to 3
