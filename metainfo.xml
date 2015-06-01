@@ -29,7 +29,8 @@
               </osSpecific>
             </osSpecifics> 
       	    <configuration-dependencies>
-        	<config-type>test-config</config-type>
+	        	<config-type>nslcd-config</config-type>
+	        	<config-type>nsswitch-env</config-type>        	
       	    </configuration-dependencies>
             <restartRequiredAfterChange>false</restartRequiredAfterChange>
         </service>
