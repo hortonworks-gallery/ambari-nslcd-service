@@ -30,6 +30,7 @@
             </osSpecifics> 
       	    <configuration-dependencies>
 	        	<config-type>nslcd-config</config-type>
+	        	<config-type>nslcd-env</config-type>	        	
 	        	<config-type>nsswitch-env</config-type>        	
       	    </configuration-dependencies>
             <restartRequiredAfterChange>false</restartRequiredAfterChange>

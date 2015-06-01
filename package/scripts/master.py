@@ -38,6 +38,7 @@ class Master(Script):
     import status_params    
     env.set_params(params)
     
+    Execute('echo list of config dump: ' + str(', '.join(params.config['configurations'])))        
     content=InlineTemplate(status_params.nslcd_template_config)
     File(format("/etc/nslcd.conf"), content=content, owner='root',group='root', mode=0600)
 
