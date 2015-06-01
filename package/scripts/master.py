@@ -35,10 +35,10 @@ class Master(Script):
 
   def configure(self, env):
     import params
-    import status_params    
+    #import status_params    
     env.set_params(params)
     
-    content=InlineTemplate(status_params.nslcd_template_config)
+    content=InlineTemplate(params.nslcd_template_config)
     File(format("/etc/nslcd.conf"), content=content, owner='root',group='root', mode=0600)
 
     switchcontent=InlineTemplate(params.nsswitch_template_config)
@@ -47,20 +47,20 @@ class Master(Script):
 
   def stop(self, env):
     import params
-    import status_params
+    #import status_params
     self.configure(env)
     Execute('service nslcd stop')
       
   def start(self, env):
     import params
-    import status_params
+    #import status_params
     self.configure(env)
     Execute('service nslcd start')
 	
 
   def status(self, env):
-    import status_params
-    env.set_params(status_params)  
+    #import status_params
+    #env.set_params(status_params)  
     check_process_status('/var/run/nslcd/nslcd.pid')
     #Execute('service nslcd status')
 
