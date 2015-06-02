@@ -41,10 +41,12 @@ On bottom left -> Actions -> Add service -> check NSLCD server -> Next -> Next -
     ```
     curl -u admin:admin -i -H 'X-Requested-By: ambari' -X DELETE http://sandbox.hortonworks.com:8080/api/v1/clusters/Sandbox/services/NSLCD
     ```
-  - Remove artifacts 
+  - Remove nslcd rpm and config files 
   
     ```
-    /var/lib/ambari-server/resources/stacks/HDP/2.2/services/openldap-stack/remove.sh
+	rpm -e nss-pam-ldapd-0.8.12-rhel6.13.1.x86_64
+	rm -f /etc/nslcd.conf
+	rm -f /etc/nsswitch.conf    
     ```
 
 - One benefit to wrapping the component in Ambari service is that you can now monitor/manage this service remotely via REST API
