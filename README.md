@@ -1,5 +1,5 @@
-#### An Ambari Stack for NSLCD
-Ambari stack for easily installing and managing NSLCD on HDP cluster
+#### An Ambari Service for NSLCD
+Ambari service for easily installing and managing NSLCD on HDP cluster
 
 Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 
@@ -18,7 +18,7 @@ ssh root@sandbox.hortonworks.com
 /root/start_ambari.sh
 ```
 
-- To deploy the NSLCD stack, run below
+- To deploy the NSLCD service, run below
 ```
 cd /var/lib/ambari-server/resources/stacks/HDP/2.2/services
 git clone https://github.com/abajwa-hw/nslcd-stack.git   
