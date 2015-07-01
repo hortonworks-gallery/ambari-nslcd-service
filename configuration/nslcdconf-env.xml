@@ -125,6 +125,8 @@ filter group  (objectClass=posixgroup)
 uid nslcd
 gid ldap
 # This comment prevents repeated auto-migration of settings.
+
+
     </value>
   </property>
   
