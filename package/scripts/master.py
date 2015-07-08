@@ -48,8 +48,10 @@ class Master(Script):
 
     content=InlineTemplate(params.nslcd_template_config)    
     File(format("/etc/nslcd.conf"), content=content, owner='root',group='root', mode=0644)
-    #add new line at end as Ambari removes trailing newlines and nslcd requires this
+    #add new lines at end as Ambari removes trailing newlines and nslcd requires this
     Execute('ed -s /etc/nslcd.conf <<< w')    
+    Execute('ed -s /etc/nslcd.conf <<< w')    
+
 
   def stop(self, env):
     import params
