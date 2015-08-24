@@ -1,0 +1,17 @@
+{
+  "services": [
+    {
+      "name": "NSLCD",
+      "identities": [
+        {
+          "name": "/smokeuser"
+        }
+      ],
+      "components": [
+        {
+          "name": "NSLCD_MASTER"
+        }
+      ]
+    }
+  ]
+}
